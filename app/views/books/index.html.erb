@@ -1,4 +1,35 @@
-<h1>ようこそ<strong>Bookersへ！</h1>
-	<p><strong>Bookers</strong>では、さまざまな書籍に関するあなたの意見や</p>
-	<p>印象を共有し交換することができます</p>
-	<p><a href="/books">start</a></p>
+<h1>Books</h1>
+<table>
+	<tbody>
+		<tr>
+			<th>Title</th>
+			<th>Body</th>
+		</tr>
+		<% @books.each do |book| %>
+		<tr>
+			<td><%= book.title %></td>
+			<td><%= book.body %></td>
+			<td><%= link_to "Show", book_path(book) %></td>
+			<td><%= link_to "Edit", edit_book_path(book) %></td>
+			<td><%= link_to "Destroy", book_path(book), method: :delete %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+
+
+
+<h2>New Book</h2>
+
+<%= form_for(@book) do |f| %>
+
+<span>Title</span><br>
+<%= f.text_field :title %><br><br>
+
+<span>Body</span><br>
+<%= f.text_area :body %><br><br>
+
+<%= f.submit 'Create Book' %>
+
+<% end %>
